@@ -3,6 +3,8 @@ package com.example.netology_1
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
@@ -10,15 +12,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.w("onCreate", "start")
+        setSupportActionBar(findViewById(R.id.topAppBar))
+    }
 
-        val i: Int = 42
-        val s: String = "Hello, World!"
-        val f: Float = 3.14f
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
-        val textView = findViewById<TextView>(R.id.textView)
-        textView.text = "$s $i $f"
-
-        Log.w("onCreate", "finish")
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_search -> {
+                true
+            }
+            R.id.action_voice -> {
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
